@@ -1,0 +1,24 @@
+{
+  "name": "crawler",
+  "version": "1.0.0",
+  "description": "Nodejs 编写的爬虫例子",
+  "scripts": {
+    "dome_01": "node dome_01.js"
+  },
+  "keywords": [
+    "crawler",
+    "nodejs"
+  ],
+  "author": "https://github.com/suguangwen",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^0.18.0",
+    "fs": "0.0.2",
+    "async": "^1.4.2",
+    "fetch": "^1.0.0",
+    "mkdirp": "^0.5.1",
+    "node-fetch": "^1.3.3",
+    "request": "^2.51.0",
+    "xml2js": "^0.4.16"
+  }
+}
