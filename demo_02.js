@@ -6,16 +6,17 @@ var mkdirp = require('mkdirp');
 
 //目标网址
 var oUrl = 'http://www.3lian.com/gif/more/04/';
+
 //本地存储目录
 var dir = './dome_02_images';
 
 //未抓取列表
 var aNewUrlQueue = [];
 
-//已抓取列表
+//需要抓取的类别列表
 var aGotUrlQueue = [];
 
-//每个类别的总页码数
+//类别的总页码数
 var aNewLen = [];
 
 //创建目录
@@ -31,16 +32,9 @@ mkdirp(dir, function(err) {
     if (aNewUrlQueue.length === 0 && aGotUrlQueue.length === 0) {
         aNewUrlQueue.push(oUrl)
     }
-    if (aNewUrlQueue.length > 0) {
-        var url = aNewUrlQueue.pop();
-    };
-    request(url, function(error, response, body) {
+    request(oUrl, function(error, response, body) {
         if(!error && response.statusCode == 200) {
             var $ = cheerio.load(body);
-            $('.top_dh a').each(function() {
-                var html = "http://www.3lian.com" + $(this).attr('href')
-                aNewUrlQueue.push(html)
-            });
             for (var i = 0; i < aNewUrlQueue.length; i++) {
                 var sUrl = aNewUrlQueue[i];
                 var n = 0;
@@ -55,11 +49,12 @@ mkdirp(dir, function(err) {
                                 var $ = cheerio.load(body);
                                 $('.img img').each(function() {
                                     var src = $(this).attr('src');
-                                    console.log(src)
-                                    console.log('正在下载' + src);
-                                    var patt=new RegExp("^http");
-                                    if (patt.test(src)) {
-                                        download(src, dir, Math.floor(Math.random()*10000000) + src.substr(-4,4));
+                                    var sRc = src.split("/");
+                                    sRc.splice(sRc.length - 1, 0, "d");
+                                    console.log('正在下载' + sRc.join("/"));
+                                    var patt=new RegExp("http");
+                                    if (patt.test(sRc.join("/"))) {
+                                        download(sRc.join("/"), dir, Math.floor(Math.random()*10000000) + src.substr(-4,4));
                                         console.log('下载完成');
                                     }
                                 });
