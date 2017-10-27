@@ -13,3 +13,8 @@ nodejs爬虫dome
 ### ipscan
 
 > 端口号检索 && port retrieve
+
+
+# License
+
+MIT
