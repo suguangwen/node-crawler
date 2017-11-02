@@ -12,8 +12,11 @@ nodejs爬虫dome
 
 ### ipscan
 
-> 端口号检索 && port retrieve
+> 全网端口号检索 && whole network port retrieve
 
+### domain
+
+> 域名检索，查看域名是否被注册过 && domain retrieve, See if the domain name has been registered
 
 # License
 

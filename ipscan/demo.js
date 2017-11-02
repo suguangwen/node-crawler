@@ -2,9 +2,7 @@ var async = require('async') //控制并发
 var cheerio = require('cheerio') //选择器
 var superagent  = require('superagent') //请求发送
 var charset = require('superagent-charset'); //编码转换
-//node基础库
-var urls = require('url')
-var fs = require('fs');
+
 
 var concurrencyCount = 0;
 var fetchUrl = function (url, callback) {
@@ -19,16 +17,24 @@ var fetchUrl = function (url, callback) {
 };
 
 var urls = [];
-var a = 40
+var a = 255
 var b = 255
+var c = 255
+var d = 255
+
 //IP段遍历
-for(var i = 20; i < a; i++) {
-    for (var j = 0; j < b; j++) {
-        urls.push('http://121.8.' + i + '.' + j + ':80');
+for(var e = 0; e < a; e++) {
+    for (var f = 0; f < b; f++) {
+        for(var g = 0; g < c; g++) {
+            for (var h = 0; h < d; h++) {
+                urls.push('http://' + e + '.' + f +'.' + g + '.' + h + ':80');
+                console.log('http://' + e + '.' + f +'.' + g + '.' + h + ':80')
+            }
+        }
     }
 }
-console.log(urls)
-//控制并发
+
+// //控制并发
 async.mapLimit(urls, 5, function (url, callback) {
     fetchUrl(url, callback);
     //请求发送
