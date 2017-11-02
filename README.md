@@ -1,4 +1,4 @@
-# node-crawler-demo
+# node-crawler
 
 A nodejs crawler demo collection.
 
