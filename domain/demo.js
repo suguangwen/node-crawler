@@ -1,7 +1,7 @@
 var async = require('async') //控制并发
 var cheerio = require('cheerio') //选择器
 var superagent  = require('superagent') //请求发送
-var whois = require('whois')
+var whois = require('whois') //域名检索
 
 //拼音数据
 var domainData = []
@@ -41,10 +41,8 @@ var fetchUrl = function (url, callback) {
 var dataFun =  function (data) {
     var urls = [];
     //域名遍历
-    for (var j = 0; j < data.length; j++) {
-        for(var i = 0; i < data.length; i++) {
-            urls.push(data[j] + data[i] + '.com');
-        }
+    for(var i = 0; i < data.length; i++) {
+        urls.push(data[i] + '.com');
     }
     //控制并发
     async.mapLimit(urls, 10, function (url, callback) {
