@@ -2,6 +2,8 @@ var async = require('async') //控制并发
 var cheerio = require('cheerio') //选择器
 var superagent  = require('superagent') //请求发送
 var whois = require('whois') //域名检索
+//node基本模块
+var fs = require('fs');
 
 //拼音数据
 var domainData = []
@@ -57,6 +59,13 @@ var dataFun =  function (data) {
             console.log('该域名已被注册：' + url)
         })
     }, function (err, result) {
-        console.log(endData)
+        //存储爬取到的数据
+        fs.writeFile('demo.txt', endData, (err)=> {
+            if (err) {
+                return console.error(err);
+            }
+            console.log("数据写入成功！");
+            console.log("--------我是分割线-------------")
+        });
     });
 }
